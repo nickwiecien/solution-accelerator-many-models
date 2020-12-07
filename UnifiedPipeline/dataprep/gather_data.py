@@ -70,27 +70,11 @@ train_path = args.train_path
 inference_path = args.inference_path
 data_path = args.data_path
 
-# Pull all of the data
-# oj_sales_files = OjSalesSimulated.get_file_dataset()
-
-# # Pull only the first 10 files
-# oj_sales_files = oj_sales_files.take(10)
-
-# # Create a folder to download
-# download_path = './oj_sales_data_local' 
-# os.makedirs(download_path, exist_ok=True)
-
-print(data_path)
-print(inference_path)
-print(train_path)
-
 os.makedirs(data_path, exist_ok=True)
 os.makedirs(train_path, exist_ok=True)
 os.makedirs(inference_path, exist_ok=True)
 
-# # Download the data
-# oj_sales_files.download(data_path, overwrite=True)
-
+#Data has been collected already
 timestamp_column = 'WeekStarting'
 split_date = '1992-05-28'
 source_dir = 'local_data'
@@ -122,28 +106,3 @@ target_dir = data_path
 raw_files = os.listdir(source_dir)
 for file_name in raw_files:
     shutil.move(os.path.join(source_dir, file_name), target_dir)
-
-
-# Upload train data
-# ds_train_path = target_path + '_train'
-# datastore.upload(src_dir=train_path, target_path=ds_train_path, overwrite=True)
-
-# # Upload inference data
-# ds_inference_path = target_path + '_inference'
-# datastore.upload(src_dir=inference_path, target_path=ds_inference_path, overwrite=True)
-
-# os.makedirs(os.path.dirname(args.train_path), exist_ok=True)
-# with open(args.output_path, 'w') as f:
-#     f.write("Step 1's output")
-
-# # Create file datasets
-# ds_train = Dataset.File.from_files(path=datastore.path(ds_train_path), validate=False)
-# ds_inference = Dataset.File.from_files(path=datastore.path(ds_inference_path), validate=False)
-
-# # Register the file datasets
-# dataset_name = 'oj_data'
-# train_dataset_name = dataset_name + '_train'
-# inference_dataset_name = dataset_name + '_inference'
-# ds_train.register(ws, train_dataset_name, create_new_version=True)
-# ds_inference.register(ws, inference_dataset_name, create_new_version=True)
-
