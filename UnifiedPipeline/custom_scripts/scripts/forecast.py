@@ -48,11 +48,11 @@ def run(input_data):
             raise ValueError("More than one models encountered for given timeseries id")
         model_path = models[0].download()
         forecaster = joblib.load(model_path)
-        #Grab relevant model metric - rmse hardcoded here, pass in metric name as variable arg
+        #Grab relevant model metric - mae hard-coded here, pass in metric name as variable arg
         run_id = models[0].run_id
         run = Run.get(ws, run_id)
         model_name = models[0].name
-        target_metric = run.get_metrics(name=model_name + '_rmse')[model_name + '_rmse']
+        target_metric = run.get_metrics(name=model_name + '_mae')[model_name + '_mae']
 
         # 5.0 Make predictions
         forecasts = forecaster.forecast(data)

@@ -95,7 +95,7 @@ def run(input_data):
 
         run_id = model_list[0].run_id
         run = Run.get(ws, run_id)
-        target_metric = run.get_metrics(name='normalized_root_mean_squared_error')['normalized_root_mean_squared_error']
+        target_metric = run.get_metrics(name='mean_absolute_error')['mean_absolute_error']
 
         X_test = data.copy()
         if args.target_column_name is not None:
