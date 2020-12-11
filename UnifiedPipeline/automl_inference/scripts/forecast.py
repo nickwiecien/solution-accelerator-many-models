@@ -10,6 +10,7 @@ import hashlib
 from azureml.core import Run
 from azureml.core.model import Model
 from azureml_user.parallel_run import EntryScript
+import numpy as np
 
 
 # 0.0 Parse input arguments
@@ -92,6 +93,10 @@ def run(input_data):
         model_name = model_list[0].name
         print('Unpickled the model ' + model_name)
 
+        run_id = model_list[0].run_id
+        run = Run.get(ws, run_id)
+        target_metric = run.get_metrics(name='mean_absolute_error')['mean_absolute_error']
+
         X_test = data.copy()
         if args.target_column_name is not None:
             X_test.pop(args.target_column_name)
@@ -105,6 +110,7 @@ def run(input_data):
         # Insert predictions to test set
         predicted_column_name = 'Predictions'
         data[predicted_column_name] = y_predictions
+        data['model_metric'] = np.full(len(y_predictions), target_metric)
         print(data.head())
         print('Inserted predictions ' + model_name)
 
