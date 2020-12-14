@@ -5,11 +5,11 @@
     "iterations": 15,
     "experiment_timeout_hours": 1,
     "label_column_name": "Quantity",
-    "n_cross_validations": 3,
+    "n_cross_validations": 5,
     "verbosity": 20,
     "debug_log": "automl_oj_sales_debug.txt",
     "time_column_name": "WeekStarting",
-    "max_horizon": 20,
+    "max_horizon": 5,
     "track_child_runs": true,
     "group_column_names": [
         "Store",

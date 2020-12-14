@@ -93,7 +93,7 @@ os.makedirs(inference_path, exist_ok=True)
 
 timestamp_column = 'WeekStarting'
 split_date = '1992-05-28'
-source_dir = 'local_data'
+source_dir = 'cv_data'
 # # Split each file and store in corresponding directory
 local_train_path, local_inference_path = split_data(source_dir, timestamp_column, split_date)
 
