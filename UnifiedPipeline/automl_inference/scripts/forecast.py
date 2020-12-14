@@ -93,6 +93,7 @@ def run(input_data):
         model_name = model_list[0].name
         print('Unpickled the model ' + model_name)
 
+        # Grab relevant model metrics
         run_id = model_list[0].run_id
         run = Run.get(ws, run_id)
         target_metric = run.get_metrics(name='mean_absolute_error')['mean_absolute_error']
@@ -107,7 +108,7 @@ def run(input_data):
             X_test, ignore_data_errors=True)
         print('Made predictions ' + model_name)
 
-        # Insert predictions to test set
+        # Insert predictions/model metrics to test set
         predicted_column_name = 'Predictions'
         data[predicted_column_name] = y_predictions
         data['model_metric'] = np.full(len(y_predictions), target_metric)
