@@ -10,7 +10,7 @@
     "debug_log": "automl_oj_sales_debug.txt",
     "time_column_name": "WeekStarting",
     "max_horizon": 20,
-    "track_child_runs": true,
+    "track_child_runs": false,
     "group_column_names": [
         "Store",
         "Brand"
